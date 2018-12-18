@@ -12,10 +12,8 @@ function make2DArray(cols, rows){
   return arr;
 }
 
-
-
 function setup() {
-  createCanvas(400,400);
+  createCanvas(600,600);
   w = width/rows;
   gems = make2DArray(cols, rows);
   for (let i = 0; i < cols; i++){
@@ -30,13 +28,12 @@ function mousePressed(){
     for(let j = 0; j < rows; j++){
       if(gems[i][j].clicked()){
         if(gemClicked !== null){
-          var temp = gems[i][j].color;
-          console.log(gems[i][j]);
-          gems[i][j].color = gems[gemClicked.i][gemClicked.j].color;
-          gems[gemClicked.i][gemClicked.j].color = temp;
-          console.log(gems[i][j]);
+          if ((abs(i-gemClicked.i) === 0 || abs(i-gemClicked.i) === 1) && (abs(j-gemClicked.j) === 0 || abs(j-gemClicked.j) === 1)){
+            var temp = gems[i][j].color;
+            gems[i][j].color = gems[gemClicked.i][gemClicked.j].color;
+            gems[gemClicked.i][gemClicked.j].color = temp;
+          }
           gemClicked = null;
-          redraw();
           return;
         }
         gemClicked = {i: i, j: j};
@@ -48,6 +45,8 @@ function mousePressed(){
 function draw() {
   for (let i = 0; i < cols; i++){
     for (let j = 0; j < rows; j++){
+      fill(51);
+      rect(i*w,j*w,w,w);
       gems[i][j].show();
     }
   }
