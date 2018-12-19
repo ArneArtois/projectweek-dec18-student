@@ -23,6 +23,44 @@ function setup() {
   }
 }
 
+function checkMatch(){
+  let result = [];
+  for(let i = 0; i < rows; i++){
+    for(let j = 0; j < cols-2; j++){
+
+      if(gems[j+1][i].color === gems[j][i].color && gems[j+2][i].color === gems[j][i].color){
+        result.push({x: j+1, y: i});
+        result.push({x: j, y: i});
+        result.push({x: j+2, y: i});
+        return result;
+      }
+    }
+
+      for(let i = 0; i < rows-2; i++){
+        for(let j = 0; j < cols; j++){
+
+          if(gems[j][i+1].color === gems[j][i].color && gems[j][i+2].color === gems[j][i].color){
+            result.push({x: j, y: i+1});
+            result.push({x: j, y: i});
+            result.push({x: j, y: i+2});
+            return result;
+          }
+        }
+      }
+
+  }
+
+  // for(let i = 0; i !== grid[0].length; i++){
+  //   if(grid[position.y][position.x].color === grid[position.y][i].color){
+  //     // console.log(position);
+  //     // console.log(grid[position.y][i].color);
+  //     result.push({x: i, y: position.y});
+  //   }
+  // }
+
+  return result;
+}
+
 function mousePressed(){
   for(let i = 0; i < cols; i++){
     for(let j = 0; j < rows; j++){
@@ -32,6 +70,18 @@ function mousePressed(){
             var temp = gems[i][j].color;
             gems[i][j].color = gems[gemClicked.i][gemClicked.j].color;
             gems[gemClicked.i][gemClicked.j].color = temp;
+            if(checkMatch().length > 2){
+              console.log("match");
+              for(let x = 0; x !== checkMatch().length; x++){
+                let match = checkMatch();
+                gems[match[0].x][match[0].y].color = 'black';
+                gems[match[1].x][match[1].y].color = 'black';
+                gems[match[2].x][match[2].y].color = 'black';
+              }
+              // var temp = gems[i][j].color;
+              // gems[i][j].color = gems[gemClicked.i][gemClicked.j].color;
+              // gems[gemClicked.i][gemClicked.j].color = temp;
+            }
           }
           gemClicked = null;
           return;
@@ -47,7 +97,10 @@ function draw() {
     for (let j = 0; j < rows; j++){
       fill(51);
       rect(i*w,j*w,w,w);
-      gems[i][j].show();
+      if (gems[i][j] !== null){
+        gems[i][j].show();
+      }
+
     }
   }
 }
