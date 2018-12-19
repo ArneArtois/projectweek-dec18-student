@@ -23,6 +23,32 @@ function setup() {
   }
 }
 
+function swap(i1,j1,i2,j2){
+  var temp = gems[i1][j1].color;
+  gems[i1][j1].color = gems[i2][j2].color;
+  gems[i2][j2].color = temp;
+}
+
+// function fall(){
+//   for(let i = 0; i < rows; i++){
+//     for(let j = 0; j < cols; j++){
+//       if(gems[0][j].color === 'black'){
+//
+//
+//           gems[0][j].color = random(colors);
+//
+//
+//
+//       } else if(gems[i][j].color === 'black'){
+//         if(j > 0 ){
+//           swap(i,j, i,j-1);
+//         }
+//
+//        }
+//     }
+//   }
+// }
+
 function checkMatch(){
   let result = [];
   for(let i = 0; i < rows; i++){
@@ -67,9 +93,7 @@ function mousePressed(){
       if(gems[i][j].clicked()){
         if(gemClicked !== null){
           if ((abs(i-gemClicked.i) === 0 || abs(i-gemClicked.i) === 1) && (abs(j-gemClicked.j) === 0 || abs(j-gemClicked.j) === 1)){
-            var temp = gems[i][j].color;
-            gems[i][j].color = gems[gemClicked.i][gemClicked.j].color;
-            gems[gemClicked.i][gemClicked.j].color = temp;
+            swap(i,j,gemClicked.i, gemClicked.j);
             if(checkMatch().length > 2){
               console.log("match");
               for(let x = 0; x !== checkMatch().length; x++){
@@ -93,14 +117,24 @@ function mousePressed(){
 }
 
 function draw() {
+  //fall();
+  // if(checkMatch().length > 2){
+  //   console.log("match");
+  //   for(let x = 0; x !== checkMatch().length; x++){
+  //     let match = checkMatch();
+  //     gems[match[0].x][match[0].y].color = 'black';
+  //     gems[match[1].x][match[1].y].color = 'black';
+  //     gems[match[2].x][match[2].y].color = 'black';
+  //   }
+    // var temp = gems[i][j].color;
+    // gems[i][j].color = gems[gemClicked.i][gemClicked.j].color;
+    // gems[gemClicked.i][gemClicked.j].color = temp;
+  //}
   for (let i = 0; i < cols; i++){
     for (let j = 0; j < rows; j++){
       fill(51);
       rect(i*w,j*w,w,w);
-      if (gems[i][j] !== null){
-        gems[i][j].show();
-      }
-
+      gems[i][j].show();
     }
   }
 }
