@@ -34,13 +34,9 @@ function fall(){
   for(let i = 0; i < rows; i++){
     for(let j = 0; j < cols; j++){
       if(gems[j][0].color === 'black'){
-
-
           gems[j][0].color = random(colors);
-
-
-
-      } else if(gems[i][j].color === 'black'){
+      }
+      else if(gems[i][j].color === 'black'){
         if(j > 0 ){
           swap(i,j, i,j-1);
         }
@@ -76,7 +72,7 @@ function checkMatch(){
         result.push({x: j+1, y: i});
         result.push({x: j, y: i});
         result.push({x: j+2, y: i});
-        score += 1;
+        score += 5;
         return result;
       }
     }
@@ -88,7 +84,7 @@ function checkMatch(){
             result.push({x: j, y: i+1});
             result.push({x: j, y: i});
             result.push({x: j, y: i+2});
-            score += 1;
+            score += 5;
             return result;
           }
         }
