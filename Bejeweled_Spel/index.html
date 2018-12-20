@@ -6,8 +6,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
     <script src="gem.js"></script>
     <script src="Bejeweled.js"></script>
+
 </head>
 <body>
-
+  <h1 id="h1">Score: </h1>
+  <script>
+    function updateScore(){
+      document.getElementById("h1").innerHTML = "Score: " + score;
+    }
+  </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 var rows = 10;
 var cols = 10;
+let score = 0;
 let w;
 let colors = ['red', 'green', 'blue', 'yellow', 'purple'];
 let gemClicked = null;
@@ -13,7 +14,7 @@ function make2DArray(cols, rows){
 }
 
 function setup() {
-  createCanvas(600,600);
+  createCanvas(600,700);
   w = width/rows;
   gems = make2DArray(cols, rows);
   for (let i = 0; i < cols; i++){
@@ -49,6 +50,8 @@ function fall(){
   }
 }
 
+
+
 function checkMatch(){
   let result = [];
 
@@ -73,6 +76,7 @@ function checkMatch(){
         result.push({x: j+1, y: i});
         result.push({x: j, y: i});
         result.push({x: j+2, y: i});
+        score += 1;
         return result;
       }
     }
@@ -84,6 +88,7 @@ function checkMatch(){
             result.push({x: j, y: i+1});
             result.push({x: j, y: i});
             result.push({x: j, y: i+2});
+            score += 1;
             return result;
           }
         }
@@ -132,6 +137,7 @@ function mousePressed(){
 }
 
 function draw() {
+  updateScore();
   fall();
   if(checkMatch().length > 2){
     console.log("match");
