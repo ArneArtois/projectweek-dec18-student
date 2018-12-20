@@ -1,4 +1,4 @@
-function gem(x,y,color) {
+function gem(y,x,color) {
   this.color = color;
   this.x = x;
   this.y = y;
@@ -6,27 +6,26 @@ function gem(x,y,color) {
   this.show = function(){
     noStroke();
     fill(this.color);
-    rng = random(2);
     if (this.color === "red"){
-      ellipse(this.x,this.y,40,40);
+      ellipse(this.y,this.x,40,40);
     }
     else if (this.color === "purple"){
-      triangle(this.x, this.y - 25, this.x - 25, this.y + 25, this.x + 25, this.y + 25);
+      triangle(this.y, this.x - 25, this.y - 25, this.x + 25, this.y + 25, this.x + 25);
     }
     else if (this.color === "green"){
-      ellipse(this.x, this.y, 40, 40);
-      rect(this.x - 18.5, this.y - 18.5, 37, 37);
+      ellipse(this.y, this.x, 40, 40);
+      rect(this.y - 18.5, this.x - 18.5, 37, 37);
     }
     else if (this.color === "blue"){
-      polygon(this.x, this.y, 25, 6);
+      polygon(this.y, this.x, 25, 6);
     }
     else {
-      rect(this.x - 20, this.y - 20, 40, 40);
+      rect(this.y - 20, this.x - 20, 40, 40);
     }
   }
 
   this.clicked = function(){
-    var distance = dist(mouseX, mouseY, this.x, this.y);
+    var distance = dist(mouseX, mouseY, this.y, this.x);
     if(distance < 25){
       return true;
     }
