@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Bejeweled</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
@@ -9,10 +10,10 @@
 
 </head>
 <body>
-  <h1 id="h1">Score: </h1>
+  <h1 id="h1" style="font-family: 'Major Mono Display', monospace;">Score: </h1>
   <script>
     function updateScore(){
-      document.getElementById("h1").innerHTML = "Score: " + score;
+      document.getElementById("h1").innerHTML = "score: " + score;
     }
   </script>
 </body>
